@@ -1,6 +1,8 @@
 pipeline {
     // Defines where the automation will execute (any available runner/agent)
-    agent any 
+    agent any {
+        label 'AGENT-1'  // in consloe nabel name here should be same 
+    }
 
     // Optional global configurations
     options {
