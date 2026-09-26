@@ -5,7 +5,7 @@ pipeline {
 }
 
 
-    tages {
+    stages {
         stage('Test Agent') {
             steps {
                 sh 'echo "Hello from Jenkins Agent"'
