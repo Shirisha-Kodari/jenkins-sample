@@ -1,8 +1,20 @@
 pipeline {
     // Defines where the automation will execute (any available runner/agent)
     agent {
-    label 'roboshop'
+    label 'roboshop'  //agent name and should be give here 
 }
+
+
+    tages {
+        stage('Test Agent') {
+            steps {
+                sh 'echo "Hello from Jenkins Agent"'
+                sh 'hostname'
+                sh 'whoami'
+                sh 'pwd'
+                sh 'ls -la'
+            }
+        }
     // Optional global configurations
     options {
         timeout(time: 1, unit: 'HOURS') // Fails the build if it hangs too long
