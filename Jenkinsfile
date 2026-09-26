@@ -61,8 +61,15 @@ pipeline {
 
         stage('Test') {
             steps {
-                sh 'echo "Running unit and integration tests"'
-                sh 'echo "hello : ${params.PESRON }"'
+                echo 'Running unit and integration tests...'
+
+                echo "Hello: ${params.PERSON}"
+
+                echo "Selected choice: ${params.CHOICE}"
+
+                echo "Toggle: ${params.TOGGLE}"
+
+                echo "Region: ${env.REGION}"
             }
         }
 
