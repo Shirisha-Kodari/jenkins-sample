@@ -1,11 +1,20 @@
+
 pipeline {
-    // Defines where the automation will execute (any available runner/agent)
+
+    // Where the Pipeline will execute
     agent {
-    label 'roboshop'  //agent name and should be give here 
-}
+        label 'roboshop'
+    }
 
+    // Global Pipeline configuration
+    options {
+        timeout(time: 1, unit: 'HOURS')
+        timestamps()
+    }
 
+    // All stages must be inside ONE stages block
     stages {
+
         stage('Test Agent') {
             steps {
                 sh 'echo "Hello from Jenkins Agent"'
@@ -15,25 +24,17 @@ pipeline {
                 sh 'ls -la'
             }
         }
-    // Optional global configurations
-    options {
-        timeout(time: 1, unit: 'HOURS') // Fails the build if it hangs too long
-        timestamps()                    // Adds timestamps to the console logs
-    }
 
-    stages {
         stage('Checkout') {
             steps {
                 echo 'Pulling source code from repository...'
-               
             }
         }
 
         stage('Build') {
             steps {
                 echo 'Compiling the application...'
-                // Example for Linux/macOS shell. Use bat '...' for Windows.
-                sh 'echo "Running build tools here (e.g., mvn clean package, npm run build)"' 
+                sh 'echo "Running build tools here (e.g., mvn clean package, npm run build)"'
             }
         }
 
@@ -45,10 +46,10 @@ pipeline {
         }
 
         stage('Deploy') {
-            // Evaluates a condition before running this stage
             when {
-                branch 'main' // Only deploy if code is merged into the main branch
+                branch 'main'
             }
+
             steps {
                 echo 'Deploying application to the staging environment...'
                 sh 'echo "Executing deployment scripts..."'
@@ -56,18 +57,21 @@ pipeline {
         }
     }
 
-    // Runs automatically depending on how the stages finish
+    // Post-build actions
     post {
+
         always {
             echo 'Cleaning up the workspace...'
             cleanWs()
         }
+
         success {
             echo 'Pipeline completed successfully!'
         }
+
         failure {
             echo 'Pipeline failed. Sending alerts...'
         }
     }
 }
-}
+
