@@ -1,9 +1,8 @@
 pipeline {
     // Defines where the automation will execute (any available runner/agent)
-    agent any {
-        label 'AGENT-1'  // in consloe nabel name here should be same 
-    }
-
+    agent {
+    label 'roboshop'
+}
     // Optional global configurations
     options {
         timeout(time: 1, unit: 'HOURS') // Fails the build if it hangs too long
