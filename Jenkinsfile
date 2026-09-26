@@ -8,11 +8,12 @@ pipeline {
 
     environment {
         COURSE = 'jenkins'
+        REGION = 'us-east-1'
     }
 
     // Global Pipeline configuration
     options {
-        timeout(time: 1, unit: 'HOURS')
+        timeout(time: 30, unit: 'MINUTES') 
         timestamps()
     }
 
@@ -60,8 +61,8 @@ pipeline {
 
         stage('Test') {
             steps {
-                echo 'Running unit and integration tests...'
-                sh 'echo "Running test suite here (e.g., pytest, npm test)"'
+                sh 'echo "Running unit and integration tests"'
+                sh 'echo "hello : ${params.PESRON }"'
             }
         }
 
