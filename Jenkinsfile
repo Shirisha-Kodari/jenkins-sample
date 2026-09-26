@@ -69,7 +69,7 @@ pipeline {
 
                 echo "Toggle: ${params.TOGGLE}"
 
-                echo "Region: ${env.REGION}"
+                echo "Region: ${env.REGION}"     
             }
         }
 
