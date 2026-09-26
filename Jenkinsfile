@@ -6,6 +6,10 @@ pipeline {
         label 'roboshop'
     }
 
+    environment {
+        COURSE = 'jenkins'
+    }
+
     // Global Pipeline configuration
     options {
         timeout(time: 1, unit: 'HOURS')
@@ -45,8 +49,12 @@ pipeline {
 
         stage('Build') {
             steps {
-                echo 'Compiling the application...'
-                sh 'echo "Running build tools here (e.g., mvn clean package, npm run build)"'
+                script {
+                    sh """
+                     echo "hello build"
+                     env 
+                    """
+                }
             }
         }
 
