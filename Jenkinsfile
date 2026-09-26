@@ -51,8 +51,8 @@ pipeline {
             steps {
                 script {
                     sh """
-                     echo "Course is: $COURSE"
-                    //  env 
+                     echo "Course is: $COURSE" #  Print all environment variables
+                    # env 
                     """
                 }
             }
