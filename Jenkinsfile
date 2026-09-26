@@ -84,12 +84,10 @@ pipeline {
             }
             steps {
                 echo "Hello, ${PERSON}, nice to meet you."
+                echo 'Deploying application to the staging environment...'
             }
 
-            steps {
-                echo 'Deploying application to the staging environment...'
-                sh 'echo "Executing deployment scripts..."'
-            }
+          
         }
     }
 
